@@ -7,7 +7,9 @@ def find_gamma_rate(diagnostic_report: list[str]) -> str:
     gamma_rate_binary = ""
     base = len(diagnostic_report[0])
     for index in range(base):
-        index_value_counts = Counter(map(lambda x: x[index], diagnostic_report))
+        index_value_counts = Counter(
+            map(lambda x: x[index], diagnostic_report)
+        )
         mode = index_value_counts.most_common()[0][0]
         gamma_rate_binary += mode
 
@@ -34,7 +36,9 @@ def find_mode(values: list[str], criterion: str) -> str:
         else:
             return most_common[-1][0]
     else:
-        raise ValueError(f"Criterion={criterion}. Must be one of 'most' or 'least'")
+        raise ValueError(
+            f"Criterion={criterion}. Must be one of 'most' or 'least'"
+        )
 
 
 def find_rating_binary(
