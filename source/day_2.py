@@ -4,7 +4,25 @@ def read_input():
     return results
 
 
-def move():
+def move1():
+    horizontal = 0
+    depth = 0
+    for line in read_input():
+        action = line.split()
+        match action[0]:
+            case "forward":
+                horizontal += int(action[1])
+            case "up":
+                depth -= int(action[1])
+            case "down":
+                depth += int(action[1])
+            case _:
+                print(action[0])
+    final = horizontal * depth
+    print(final)
+
+
+def move2():
     horizontal = 0
     depth = 0
     aim = 0
@@ -24,4 +42,5 @@ def move():
     print(final)
 
 
-move()
+move1()
+move2()
