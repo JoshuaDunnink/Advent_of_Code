@@ -35,4 +35,72 @@ def get_power_consumption():
     return power_consumption
 
 
-print(get_power_consumption())
+def get_most_common(list):
+    one = list.count(1)
+    zero = list.count(0)
+
+    if one > zero:
+        return 1
+    elif one == zero:
+        return 1
+    else:
+        return 0
+
+
+def get_least_common(list):
+    one = list.count(1)
+    zero = list.count(0)
+
+    if one > zero:
+        return 0
+    elif one == zero:
+        return 0
+    else:
+        return 1
+
+def get_bit_from_columns(lines, column):
+    temp_container = []
+    for line in lines:
+        temp_container.append(int(line[column]))
+    return temp_container
+
+
+def select_common_lines(lines, selector, column):
+    common_lines = []
+    for line in lines:
+        if int(line[column]) == selector:
+            common_lines.append(line)
+    return common_lines
+
+
+def get_oxygen_rating():
+    lines = read_input()
+    column_length = len(lines[0].strip('\n'))
+    column = 0
+
+    for column in range(column_length):
+        temp_container = get_bit_from_columns(lines, column)
+        common = get_most_common(temp_container)
+        common_lines = select_common_lines(lines, common, column)
+        lines = common_lines
+        if len(lines) == 1:
+            return int(lines[0].strip('\n'), 2)
+
+
+def get_co2_rating():
+    lines = read_input()
+    column_length = len(lines[0].strip('\n'))
+    column = 0
+
+    for column in range(column_length):
+        temp_container = get_bit_from_columns(lines, column)
+        uncommon = get_least_common(temp_container)
+        uncommon_lines = select_common_lines(lines, uncommon, column)
+        lines = uncommon_lines
+        if len(lines) == 1:
+            return int(lines[0].strip('\n'), 2)
+
+
+oxygen_rating = get_oxygen_rating()
+co2_rating = get_co2_rating()
+life_support = print(str(co2_rating * oxygen_rating))
