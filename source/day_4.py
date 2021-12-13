@@ -18,9 +18,9 @@ class Cards:
 
     def create_cards(self):
         for board in self.cards:
-            rows = [[int(i) for i in row.split()] for row in board.split('\n')]
-            card = ([set(row) for row in rows])
-            card_transposed = ([set(col) for col in zip(*rows)])
+            rows = [[int(i) for i in row.split()] for row in board.split("\n")]
+            card = [set(row) for row in rows]
+            card_transposed = [set(col) for col in zip(*rows)]
             self.list_of_cards.append(Card(card))
             self.list_of_cards.append(Card(card_transposed))
 
@@ -47,16 +47,14 @@ class Card:
 def determine_sum(winning_card):
     numbers = []
     for row in winning_card.array:
-        numbers.append(
-            sum([number for number in row])
-        )
+        numbers.append(sum([number for number in row]))
     return sum(numbers)
 
 
 numbers, cards = read_input()
 play_bingo_with = Cards(cards)
 i = 0
-for number in [int(number) for number in numbers.split(',')]:
+for number in [int(number) for number in numbers.split(",")]:
     winning_card = play_bingo_with.draw_number(int(number))
     final_number = number
     i += 1
