@@ -2,7 +2,7 @@ import numpy as np
 
 
 def get_input():
-    with open("input/day_5", "r") as file:
+    with open("input/example_day_5", "r") as file:
         raw_data = [
             line.strip("\n").replace("->", ",").split(",") for line in file
         ]
@@ -24,10 +24,10 @@ def create_grid(size):
 def mark_lines(data, grid):
     """[x1, y1, x2, y2]"""
     for coordinates in data:
-        x1 = coordinates[0]
-        x2 = coordinates[2]
-        y1 = coordinates[1]
-        y2 = coordinates[3]
+        y2 = coordinates[0]
+        y1 = coordinates[2]
+        x2 = coordinates[1]
+        x1 = coordinates[3]
 
         if x1 == x2:
             if y1 <= y2:
@@ -44,6 +44,33 @@ def mark_lines(data, grid):
             elif x1 >= x2:
                 for x in range(x2, x1+1):
                     grid[x][y1] += 1
+
+        # if y1 != y2 and x1 != x2:
+        #     if x1 < x2 and y1 < y2:
+        #         x = x1+1
+        #         for y in range(y1, y2+1):
+        #             grid[-x-1][-y] += 1
+        #             x += 1
+
+        #     elif x1 > x2 and y1 > y2:
+        #         x = x2+1
+        #         for y in range(y2, y1+1):
+        #             grid[-x-1][y] += 1
+        #             x += 1
+
+        # if x1 < x2 and y1 > y2:
+        #     x = x1+1
+        #     for y in range(y1, y2+1):
+        #         grid[x][y] += 1
+        #         x += 1
+
+        # elif x1 > x2 and y1 < y2:
+        #     x = x2+1
+        #     for y in range(y1, y2):
+        #         grid[x-1][y] += 1
+        #         x += 1
+
+
 
     return grid
 
