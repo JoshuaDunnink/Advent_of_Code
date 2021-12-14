@@ -8,8 +8,8 @@ from collections import deque
 
 
 def read_file():
-    with open("input/day_6") as file:
-        data = [int(num) for num in file.read().split(',')]
+    with open("input/2021/day_6") as file:
+        data = [int(num) for num in file.read().split(",")]
     return data
 
 
@@ -36,12 +36,14 @@ def next_day(init_fish):
 
 fish = read_file()
 
+
 def AOC_day6_pt1_and_pt2(days):
     totals = deque(fish.count(i) for i in range(9))
     for _ in range(days):
         totals.rotate(-1)
         totals[6] += totals[8]
     return sum(totals)
+
 
 print(AOC_day6_pt1_and_pt2(80))
 print(AOC_day6_pt1_and_pt2(256))

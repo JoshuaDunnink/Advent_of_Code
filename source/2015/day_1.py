@@ -13,6 +13,6 @@ for line in data:
         else:
             count -= 1
         if count == -1:
-            print(id+1)
+            print(id + 1)
 
 print(count)
