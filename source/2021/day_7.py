@@ -9,7 +9,7 @@ def get_fuel_cost(position, crabs):
         (crab - position) if crab > position else (position - crab)
         for crab in crabs
     ]
-    cost = [(item * (1+item)/2) for item in cost]
+    cost = [(item * (1 + item) / 2) for item in cost]
     return sum(cost)
 
 
