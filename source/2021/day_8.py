@@ -119,16 +119,6 @@ def get_two_three_five_from(knowns_segments, unknown_sets):
     return knowns_segments
 
 
-def part1():
-    data = get_input1()
-    count = 0
-    for line in data:
-        for set in line[1].split(" "):
-            if len(set) in number_segments.values():
-                count += 1
-    print(count)
-
-
 def identify_numbers(data):
     known_segments1478 = get_known_segments(data)
     unknown_set023569 = get_unknown_segments(data, known_segments1478)
@@ -143,7 +133,7 @@ def identify_numbers(data):
 
 
 def get_number_from_line(line, identified_numbers):
-    _ , numbers_part = line.split("|")
+    _, numbers_part = line.split("|")
     numbers = [set(number) for number in numbers_part.split(" ")]
 
     number = "0"
@@ -153,6 +143,7 @@ def get_number_from_line(line, identified_numbers):
                 number += str(key)
     return int(number)
 
+
 def part2():
     data = get_input2()
     identified_numbers = identify_numbers(data)
@@ -161,5 +152,16 @@ def part2():
     for id, line in enumerate(data):
         count += get_number_from_line(line, identified_numbers[id])
     print(count)
+
+
+def part1():
+    data = get_input1()
+    count = 0
+    for line in data:
+        for set in line[1].split(" "):
+            if len(set) in number_segments.values():
+                count += 1
+    print(count)
+
 
 part2()
