@@ -84,8 +84,8 @@ def breakdown_zero_six_and_nine(unknown, known) -> dict:
     return known
 
 
-def get_zero_six_and_nine(known_segments, unknown_set):
-    for id, unknown in enumerate(unknown_set):
+def get_zero_six_and_nine(known_segments, unknown_sets):
+    for id, unknown in enumerate(unknown_sets):
         six_zero_nine = [item for item in unknown if len(item) == 6]
         known_segments[id].update(
             breakdown_zero_six_and_nine(six_zero_nine, known_segments[id])
@@ -93,10 +93,30 @@ def get_zero_six_and_nine(known_segments, unknown_set):
     return known_segments
 
 
-def get_top_from_one_and_seven(knowns) -> set:
-    one = set(char for char in knowns.get(1))
-    seven = set(char for char in knowns.get(7))
-    return seven.difference(one)
+def get_five(six, unknown_set):
+    for id, number in enumerate(unknown_set):
+        if len(six.difference(number)) == 1:
+            unknown_set.pop(id)
+            return unknown_set, {5: number}
+
+
+def get_two_and_three(five, unknown_set):
+    knowns = {}
+    for number in unknown_set:
+        if len(five.difference(number)) == 1:
+            knowns.update({3: number})
+        elif len(five.difference(number)) == 2:
+            knowns.update({2: number})
+    return knowns
+
+
+def get_two_three_five_from(knowns_segments, unknown_sets):
+    for id, unknown in enumerate(unknown_sets):
+        six = knowns_segments[id].get(6)
+        unknown_set, five = get_five(six, unknown)
+        knowns_segments[id].update(five)
+        knowns_segments[id].update(get_two_and_three(five.get(5), unknown_set))
+    return knowns_segments
 
 
 def part1():
@@ -109,19 +129,37 @@ def part1():
     print(count)
 
 
-def part2():
-    data = get_input2()
+def identify_numbers(data):
     known_segments1478 = get_known_segments(data)
     unknown_set023569 = get_unknown_segments(data, known_segments1478)
-    # now known 1, 4, 7, 8
-    # unknown 0, 2, 3, 5, 6, 9
-    known_segments = get_zero_six_and_nine(
+    known_segments0146789 = get_zero_six_and_nine(
         known_segments1478, unknown_set023569
     )
-    unknown_set235 = get_unknown_segments(data, known_segments)
-    # now known 0, 1, 4, 6, 7, 8, 9
-    # unknown 2, 3, 5
-    print("till here")
+    unknown_set235 = get_unknown_segments(data, known_segments0146789)
+    known_segments0123456789 = get_two_three_five_from(
+        known_segments0146789, unknown_set235
+    )
+    return known_segments0123456789
 
+
+def get_number_from_line(line, identified_numbers):
+    _ , numbers_part = line.split("|")
+    numbers = [set(number) for number in numbers_part.split(" ")]
+
+    number = "0"
+    for segments in numbers:
+        for key, value in identified_numbers.items():
+            if segments == value:
+                number += str(key)
+    return int(number)
+
+def part2():
+    data = get_input2()
+    identified_numbers = identify_numbers(data)
+
+    count = 0
+    for id, line in enumerate(data):
+        count += get_number_from_line(line, identified_numbers[id])
+    print(count)
 
 part2()
