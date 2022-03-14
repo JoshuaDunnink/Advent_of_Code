@@ -17,7 +17,8 @@ class Sled():
         self.dropoff_locations = {"0,0"}
         self.dropoff_locations_dict = {"0,0": 2}
 
-    def update_coordinates(self, direction, mover):
+    @staticmethod
+    def update_coordinates(direction, mover):
         match direction:
             case "^":
                 mover[1] += 1
