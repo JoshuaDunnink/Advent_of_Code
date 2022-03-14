@@ -8,33 +8,47 @@ def read_input():
 class Sled():
     def __init__(self, directions) -> None:
         self.directions = list(directions)
-        self.dropoff_locations = {"00":1}
-        self.coordinates = [0, 0]
         self.x = 0
         self.y = 0
+        self.santa = [0, 0]
+        self.robot = [0, 0]
+        self.santa_drop_list = {"00": 1}
+        self.robot_drop_list = {"00": 1}
+        self.dropoff_locations = {"0,0"}
+        self.dropoff_locations_dict = {"0,0": 2}
+
+    def update_coordinates(self, direction, mover):
+        match direction:
+            case "^":
+                mover[1] += 1
+            case "v":
+                mover[1] -= 1
+            case ">":
+                mover[0] += 1
+            case "<":
+                mover[0] -= 1
 
     def visit_houses(self):
-        for direction in self.directions:
-            match direction:
-                case "^":
-                    self.y += 1
-                case "v":
-                    self.y -= 1.
-                case ">":
-                    self.x += 1
-                case "<":
-                    self.x -= 1
-            self.drop_present((self.x, self.y))
+        for index, direction in enumerate(self.directions):
+            if index % 2:
+                mover = self.robot
+            else:
+                mover = self.santa
+
+            self.update_coordinates(direction, mover)
+            self.drop_present(mover)
 
     def drop_present(self, location):
-        coordinate = str(int(location[0]))+str(int(location[1]))
-        if self.dropoff_locations.get(coordinate):
-            self.dropoff_locations[coordinate] += 1
+        coordinate = str(int(location[0]))+","+str(int(location[1]))
+        self.dropoff_locations.add(coordinate)
+        if self.dropoff_locations_dict.get(coordinate):
+            self.dropoff_locations_dict[coordinate] += 1
         else:
-            self.dropoff_locations[coordinate] = 1
+            self.dropoff_locations_dict[coordinate] = 1
 
     def report_number_delivered_houses(self):
         print(len(self.dropoff_locations))
+        print(len(self.dropoff_locations_dict))
 
 
 def main():
@@ -42,5 +56,6 @@ def main():
     santa = Sled(directions)
     santa.visit_houses()
     santa.report_number_delivered_houses()
+
 
 main()
