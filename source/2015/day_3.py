@@ -1,3 +1,5 @@
+"""Importance of better writing down orderable items"""
+
 def read_input():
     with open("input/2015/day_3") as f:
         data = f.read()
