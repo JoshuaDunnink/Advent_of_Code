@@ -30,7 +30,7 @@ def determine_volume(line=list):
 
 def determine_min_circumference(line=list):
     line.remove(max(line))
-    h, w = line 
+    h, w = line
     return (2 * h + 2 * w)
 
 
@@ -45,8 +45,8 @@ def determine_bow_length(data=list):
 
 def main():
     data = read_input()
-    # print(determine_wrapping_paper(data))
-    print(determine_bow_length(data))
+    print(f"square feet of paper: {determine_wrapping_paper(data)}")
+    print(f"feet of ribbon: {determine_bow_length(data)}")
 
 
 main()
