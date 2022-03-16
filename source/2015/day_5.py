@@ -24,9 +24,7 @@ def does_not_contain_illegal_characters(line):
     illegal_characters = ["ab", "cd", "pq", "xy"]
     if not any(
         [
-            True
-            if illegal_character in line
-            else False
+            True if illegal_character in line else False
             for illegal_character in illegal_characters
         ]
     ):
@@ -38,7 +36,7 @@ def does_not_contain_illegal_characters(line):
 def has_letter_twice_in_a_row(line):
     for index, character in enumerate(line):
         if (
-            index < len(list(line))-1
+            index < len(list(line)) - 1
             and line.count(character) >= 2
             and line[index + 1] == character
         ):
@@ -51,12 +49,12 @@ def remove_illegals(data=list):
     iterable_lines = data.copy()
     for line in iterable_lines:
         if not all(
-                    [
-                        does_not_contain_illegal_characters(line),
-                        has_three_check_vowels(line),
-                        has_letter_twice_in_a_row(line),
-                    ]
-                ):
+            [
+                does_not_contain_illegal_characters(line),
+                has_three_check_vowels(line),
+                has_letter_twice_in_a_row(line),
+            ]
+        ):
             data.remove(line)
     return data
 
