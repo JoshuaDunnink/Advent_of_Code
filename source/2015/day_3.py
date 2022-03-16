@@ -1,5 +1,6 @@
 """Importance of better writing down orderable items"""
 
+
 def read_input():
     with open("input/2015/day_3") as f:
         data = f.read()
@@ -7,7 +8,7 @@ def read_input():
     return data
 
 
-class Sled():
+class Sled:
     def __init__(self, directions) -> None:
         self.directions = list(directions)
         self.x = 0
@@ -17,6 +18,7 @@ class Sled():
         self.santa_drop_list = {"00": 1}
         self.robot_drop_list = {"00": 1}
         self.dropoff_locations = {"0,0"}
+        self.dropoff_locations_incorrect = {"00"}
         self.dropoff_locations_dict = {"0,0": 2}
 
     @staticmethod
@@ -42,20 +44,31 @@ class Sled():
             self.drop_present(mover)
 
     def drop_present(self, location):
-        coordinate = str(int(location[0]))+","+str(int(location[1]))
-        self.dropoff_locations.add(coordinate)
-        if self.dropoff_locations_dict.get(coordinate):
-            self.dropoff_locations_dict[coordinate] += 1
+        coordinate_correct = (
+            str(int(location[0])) + "," + str(int(location[1]))
+        )
+        # coordinate_incorrect = str(int(location[0])) + str(int(location[1]))
+
+        self.dropoff_locations.add(coordinate_correct)
+        # self.dropoff_locations_incorrect.add(coordinate_incorrect)
+
+        # if len(self.dropoff_locations) != len(
+        #     self.dropoff_locations_incorrect
+        # ):
+        #     raise ValueError(f"{coordinate_correct=} {coordinate_incorrect=}")
+
+        if self.dropoff_locations_dict.get(coordinate_correct):
+            self.dropoff_locations_dict[coordinate_correct] += 1
         else:
-            self.dropoff_locations_dict[coordinate] = 1
+            self.dropoff_locations_dict[coordinate_correct] = 1
 
     def report_number_delivered_houses(self):
-        print(len(self.dropoff_locations))
-        print(len(self.dropoff_locations_dict))
+        print(f"{len(self.dropoff_locations)=}")
+        print(f"{len(self.dropoff_locations_dict)=}")
 
 
 def main():
-    directions = (read_input())
+    directions = read_input()
     santa = Sled(directions)
     santa.visit_houses()
     santa.report_number_delivered_houses()
