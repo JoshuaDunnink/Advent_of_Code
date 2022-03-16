@@ -6,12 +6,12 @@ def read_input():
 
 def determine_surface(line):
     h, w, l = line
-    return (2*l*w + 2*w*h + 2*h*l)
+    return 2 * l * w + 2 * w * h + 2 * h * l
 
 
 def determine_smallest_surface(line=list):
     h, w, l = line
-    return min([h*w, w*l, l*h])
+    return min([h * w, w * l, l * h])
 
 
 def determine_wrapping_paper(data=list):
@@ -25,13 +25,13 @@ def determine_wrapping_paper(data=list):
 
 def determine_volume(line=list):
     h, w, l = line
-    return (h * w * l)
+    return h * w * l
 
 
 def determine_min_circumference(line=list):
     line.remove(max(line))
     h, w = line
-    return (2 * h + 2 * w)
+    return 2 * h + 2 * w
 
 
 def determine_bow_length(data=list):
