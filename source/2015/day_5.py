@@ -1,13 +1,10 @@
-import string
-
-
 def read_input():
     with open("input/2015/day_5") as f:
         data = [line.strip("\n") for line in f.readlines()]
     return data
 
 
-def has_three_check_vowels(line=string):
+def has_three_check_vowels(line=str):
     vowels = list("aeiou")
     count = 0
     for char in vowels:
