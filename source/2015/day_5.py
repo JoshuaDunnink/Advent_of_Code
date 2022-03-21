@@ -1,3 +1,8 @@
+"""takeaway - string searches --> use regex"""
+
+import re
+
+
 def read_input():
     with open("input/2015/day_5") as f:
         data = [line.strip("\n") for line in f.readlines()]
@@ -41,7 +46,7 @@ def has_letter_twice_in_a_row(line):
     return False
 
 
-def remove_illegals(data=list):
+def pat1(data=list):
     iterable_lines = data.copy()
     for line in iterable_lines:
         if not all(
@@ -55,6 +60,31 @@ def remove_illegals(data=list):
     return data
 
 
+def has_pair_twice(line):
+    if len(re.findall(r"([a-z]{2}).*\1", line)):
+        return True
+    return False
+
+
+def has_letter_in_repeated(line):
+    if re.findall(r"([a-z]).\1", line):
+        return True
+    return False
+
+
+def part2(data):
+    iterable_lines = data.copy()
+    for line in iterable_lines:
+        if not all(
+            [
+                has_pair_twice(line),
+                has_letter_in_repeated(line),
+            ]
+        ):
+            data.remove(line)
+    return data
+
+
 data = read_input()
-data = remove_illegals(data)
+data = part2(data)
 print(len(data))
