@@ -8,7 +8,7 @@ def read_input():
 
 
 def get_array(height, width):
-    return np.ones((height, width), dtype=int) * -1
+    return np.zeros((height, width), dtype=int)
 
 
 def switch(multiplyer, array, x_range, Y_range):
@@ -16,11 +16,12 @@ def switch(multiplyer, array, x_range, Y_range):
         for y in range(Y_range[0], Y_range[1]):
             match multiplyer:
                 case "toggle":
-                    array[x][y] = array[x][y] * -1
+                    array[x][y] += 2
                 case "on":
-                    array[x][y] = 1
+                    array[x][y] += 1
                 case "off":
-                    array[x][y] = -1
+                    if not array[x][y] == 0:
+                        array[x][y] += -1
     return array
 
 
@@ -56,17 +57,16 @@ def translate_and_act(line, lamp_array):
 
 
 def count_lamps(array):
-    return (array > 0).sum()
+    return array.sum()
 
 
 def main():
-    input = read_input()
+    file_input = read_input()
     lamp_array = get_array(1000, 1000)
-    for line in input:
+    for line in file_input:
         lamp_array = translate_and_act(line, lamp_array)
 
     print(count_lamps(lamp_array))
-
 
 
 def test1():
@@ -76,4 +76,3 @@ def test1():
 
 
 main()
-
