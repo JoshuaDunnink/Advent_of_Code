@@ -29,8 +29,8 @@ def get_x_y_range(point1, point2):
     points1 = [int(char) for char in point1.split(",")]
     points2 = [int(char) for char in point2.split(",")]
 
-    x_range = (points1[0], points2[0]+1)
-    y_range = (points1[1], points2[1]+1)
+    x_range = (points1[0], points2[0] + 1)
+    y_range = (points1[1], points2[1] + 1)
 
     return x_range, y_range
 
