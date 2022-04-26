@@ -41,12 +41,14 @@ class RepeatedLookAndSay:
         new_list_of_numbers = []
         counter = 0
         while not self.at_end_of_the_list(counter):
-            count, number = self.get_next_new_number(counter)
+            count, number = self.get_number_count_and_next_new_number(
+                counter
+            )
             new_list_of_numbers.extend([count, number])
             counter += count
         return new_list_of_numbers
 
-    def get_next_new_number(self, index: int) -> tuple:
+    def get_number_count_and_next_new_number(self, index: int) -> tuple:
         number = self.look_and_say_list[index]
         count = 1
         while self.index_still_in_range(index):
