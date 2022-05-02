@@ -47,7 +47,4 @@ class Traveler:
                 return path[2]
 
 
-
-   
-
 Traveler().begin_journey()
