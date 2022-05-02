@@ -10,7 +10,7 @@ class PasswordGenerator:
         self.lowerlimit = ord("a")
         self.upperlimit = ord("z")
         self.max_length = 8
-        self.matcher = re.compile(r'(.)\1*')
+        self.matcher = re.compile(r"(.)\1*")
 
     def increment_password(self):
         self.password = self.next_password()
@@ -52,8 +52,8 @@ class PasswordGenerator:
 
     def password_is_valid(self):
         if self.has_two_repeats() and self.has_3_increases():
-           print(self.password)
-           return True
+            print(self.password)
+            return True
 
     def has_two_repeats(self):
         matches = [
@@ -65,12 +65,9 @@ class PasswordGenerator:
 
     def has_3_increases(self):
         for index, char in enumerate(list(self.password)):
-            if (
-                    (index != 0 and index != 7)
-                    and (
-                        ord(self.password[index - 1]) == ord(char) - 1
-                        and ord(self.password[index + 1]) == ord(char) + 1
-                    )
+            if (index != 0 and index != 7) and (
+                ord(self.password[index - 1]) == ord(char) - 1
+                and ord(self.password[index + 1]) == ord(char) + 1
             ):
                 return True
 
