@@ -2,13 +2,13 @@ import codecs
 
 
 def get_data():
-    with codecs.open("input/2015/day_8", 'r', encoding='unicode_escape') as q:
+    with codecs.open("input/2015/day_8", "r", encoding="unicode_escape") as q:
         return q.readlines()
 
 
 def get_raw_data():
     with open("input/2015/day_8", "r") as file:
-        data = [fr'{element}' for element in file]
+        data = [rf"{element}" for element in file]
         return data
 
 
@@ -29,5 +29,6 @@ def main():
     actual_characters -= 13
 
     print(actual_characters - line_characters)
+
 
 main()

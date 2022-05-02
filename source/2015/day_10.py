@@ -25,7 +25,6 @@ Your puzzle input is 1113222113.
 
 
 class RepeatedLookAndSay:
-
     def __init__(self, repeats: int, puzzle_input: list) -> None:
         test_list = [4, 1, 1, 2]
         self.look_and_say_list = puzzle_input if puzzle_input else test_list
@@ -41,9 +40,7 @@ class RepeatedLookAndSay:
         new_list_of_numbers = []
         counter = 0
         while not self.at_end_of_the_list(counter):
-            count, number = self.get_number_count_and_next_new_number(
-                counter
-            )
+            count, number = self.get_number_count_and_next_new_number(counter)
             new_list_of_numbers.extend([count, number])
             counter += count
         return new_list_of_numbers
@@ -52,7 +49,7 @@ class RepeatedLookAndSay:
         number = self.look_and_say_list[index]
         count = 1
         while self.index_still_in_range(index):
-            if self.look_and_say_list[index+1] == number:
+            if self.look_and_say_list[index + 1] == number:
                 index += 1
                 count += 1
             else:
