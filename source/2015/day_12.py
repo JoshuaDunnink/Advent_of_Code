@@ -6,7 +6,7 @@ def get_data() -> dict:
         return json.load(file)
 
 
-class Walker():
+class Walker:
     def __init__(self, data: dict):
         self.data = data
         self.unpack_data()
@@ -57,6 +57,7 @@ class Walker():
     @staticmethod
     def red_not_in_(value: dict):
         return "red" not in value.values()
+
 
 data = get_data()
 print(Walker(data).unpacked_sum)
