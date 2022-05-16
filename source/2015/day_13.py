@@ -11,10 +11,6 @@ class SeatAranger:
         self.participants = set()
         self.distribution = {}
         self.raw_data = data
-        self.subject = 0
-        self.effect = 2
-        self.points = 3
-        self.neighbor = -1
         self.combined_happines = []
 
         self.load_participants_and_distribution()
@@ -23,10 +19,10 @@ class SeatAranger:
         for line in self.raw_data:
             split_line = line.strip("\n").strip(".").split(" ")
 
-            subject = split_line[self.subject]
-            effect = split_line[self.effect]
-            points = int(split_line[self.points])
-            neighbor = split_line[self.neighbor]
+            subject = split_line[0]
+            effect = split_line[2]
+            points = int(split_line[3])
+            neighbor = split_line[-1]
 
             if effect == "gain":
                 multiplier = 1
