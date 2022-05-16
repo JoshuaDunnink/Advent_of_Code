@@ -42,7 +42,7 @@ def main():
         distances = determine_distance_after(duration, value)
         ranking.update({key: distances})
     print(
-        f'max distance= {max([distance[-1] for distance in ranking.values()])}'
+        f"max distance= {max([distance[-1] for distance in ranking.values()])}"
     )
 
     point_ranking = {key: 0 for key in ranking.keys()}
@@ -59,8 +59,7 @@ def main():
         else:
             point_ranking[max(compare, key=compare.get)] += 1
 
-    print(
-        point_ranking
-    )
+    print(point_ranking)
+
 
 main()
