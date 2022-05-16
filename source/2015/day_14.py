@@ -1,3 +1,13 @@
+"""
+takeaways itertools cycle and accumulate
+When dealing with a stepwise approach where steps are dependand on
+the state per step, create a 'cycle' trough which you can iterate
+per step.
+When dealing with a list (or cycle) that you would like to
+'accumulate' and keep track of, use accumulate
+"""
+
+
 from itertools import cycle, accumulate
 
 
