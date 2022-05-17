@@ -5,6 +5,9 @@ the state per step, create a 'cycle' trough which you can iterate
 per step.
 When dealing with a list (or cycle) that you would like to
 'accumulate' and keep track of, use accumulate
+
+TODO: look into collections Counter
+ 
 """
 
 
