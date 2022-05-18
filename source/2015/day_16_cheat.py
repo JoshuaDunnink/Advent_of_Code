@@ -6,6 +6,7 @@ def check(types, value):
         return props[types] > value
     return props[types] == value
 
+
 props = {}
 
 g = """children: 3
@@ -27,5 +28,9 @@ for line in g:
 with open("input/2015/day_16") as f:
     for line in f:
         line = line.strip("\n").split(" ")
-        if (check(line[2], line[3].strip(",")) and check(line[4], line[5].strip(",")) and check(line[6], line[7])):
+        if (
+            check(line[2], line[3].strip(","))
+            and check(line[4], line[5].strip(","))
+            and check(line[6], line[7])
+        ):
             print(line)
