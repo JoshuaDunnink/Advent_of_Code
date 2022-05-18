@@ -1,4 +1,5 @@
 """
+https://adventofcode.com/2015/day/14
 takeaways itertools cycle and accumulate
 When dealing with a stepwise approach where steps are dependand on
 the state per step, create a 'cycle' trough which you can iterate

@@ -1,4 +1,5 @@
 """takeaway
+https://adventofcode.com/2015/day/15
 use itertools for combination exploration and Counter for easy turfing
 """
 
