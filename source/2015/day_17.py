@@ -4,11 +4,8 @@ explanations still quite cryptic
 """
 from itertools import combinations
 
-
-containers = [
-    int(val) for val in
-    "33 14 18 20 45 35 16 35 1 13 18 13 50 44 48 6 24 41 30 42".split(" ")
-]
+numbers = "33 14 18 20 45 35 16 35 1 13 18 13 50 44 48 6 24 41 30 42"
+containers = [int(val) for val in numbers.split(" ")]
 
 eggnog = 150
 options_1 = 0
@@ -24,5 +21,3 @@ for i in range(len(containers)):
 
 
 print(options_1)
-
-        
