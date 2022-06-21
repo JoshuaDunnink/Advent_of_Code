@@ -74,6 +74,14 @@ python-versions = ">=2.7, !=3.0.*"
 graph = ["objgraph (>=1.7.2)"]
 
 [[package]]
+name = "eulerlib"
+version = "0.2"
+description = "A library of number theory related functions inspired by Project Euler."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "flake8"
 version = "4.0.1"
 description = "the modular source code checker: pep8 pyflakes and co"
@@ -294,7 +302,7 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.10,<3.11"
-content-hash = "052c80ee27cce994b74c94da28dc1f48b9f33f1c6ad6acd0b2605fac6a874ef2"
+content-hash = "93e010f5de7290b1711ee51abd9327dcc8aa03bcc91d42d5c131f5a9582e0df7"
 
 [metadata.files]
 astroid = [
@@ -341,6 +349,9 @@ colorama = [
 dill = [
     {file = "dill-0.3.4-py2.py3-none-any.whl", hash = "sha256:7e40e4a70304fd9ceab3535d36e58791d9c4a776b38ec7f7ec9afc8d3dca4d4f"},
     {file = "dill-0.3.4.zip", hash = "sha256:9f9734205146b2b353ab3fec9af0070237b6ddae78452af83d2fca84d739e675"},
+]
+eulerlib = [
+    {file = "eulerlib-0.2.zip", hash = "sha256:f34771537c92d4c82ae67f34ea9dff9bd7489ecf009d50c3dc4e4459aeefe9af"},
 ]
 flake8 = [
     {file = "flake8-4.0.1-py2.py3-none-any.whl", hash = "sha256:479b1304f72536a55948cb40a32dce8bb0ffe3501e26eaf292c7e60eb5e0428d"},
