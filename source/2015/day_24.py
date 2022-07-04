@@ -17,9 +17,10 @@ def knapsacks(num_groups, weights):
     group_size = sum(weights) // num_groups
     for i in range(len(weights)):
         qes = [
-                reduce(mul, c) for c in combinations(weights, i)
-                if sum(c) == group_size
-            ]
+            reduce(mul, c)
+            for c in combinations(weights, i)
+            if sum(c) == group_size
+        ]
         if qes:
             return min(qes)
 
