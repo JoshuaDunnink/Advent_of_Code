@@ -2,12 +2,11 @@ def get_data():
     with open("input/2016/day_1", "r") as input:
         return [
             instruction.strip("\n").strip(" ")
-            for instruction
-            in input.read().split(",")
+            for instruction in input.read().split(",")
         ]
 
 
-class GoTheDistance():
+class GoTheDistance:
     def __init__(self, instructions: list) -> None:
         self.direction = 0
         self.position = [0, 0]
@@ -40,7 +39,7 @@ class GoTheDistance():
                     self.position[0] += 1
                     self.visited.append(self.position[:])
             case 1:
-                for _ in range(steps):             
+                for _ in range(steps):
                     self.position[1] += 1
                     self.visited.append(self.position[:])
             case 2:
