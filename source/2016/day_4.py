@@ -8,10 +8,15 @@ class Checker:
         self.counted = {}
         self.line = line
         self.checksum = line[-6:-1]
-        self.new_line = self.line[0 : len(line) - 7]
+        self.new_line = self.line[0: len(line) - 7]
         self.number_location = len(self.new_line.split("-")) - 1
 
     def validate(self):
+        self.count_and_sort()
+        self.create_check_sum()
+        return self.validate_checksum()
+
+    def count_and_sort(self):
         for char in self.new_line:
             if (
                 char not in self.counted.keys()
@@ -20,27 +25,29 @@ class Checker:
             ):
                 self.counted.update({char: self.new_line.count(char)})
 
-        sorted_counted = dict(
+        self.sorted_counted = dict(
             sorted(
                 self.counted.items(), key=lambda item: item[1], reverse=True
             )
         )
 
-        determine_check_sum = {}
-        for k, v in sorted_counted.items():
-            if v in determine_check_sum.keys():
-                determine_check_sum[v].append(k)
+    def create_check_sum(self):
+        self.determine_check_sum = {}
+        for k, v in self.sorted_counted.items():
+            if v in self.determine_check_sum.keys():
+                self.determine_check_sum[v].append(k)
             else:
-                determine_check_sum.update({v: [k]})
+                self.determine_check_sum.update({v: [k]})
 
-        check_sum = ""
-        for k, v in determine_check_sum.items():
+        self.check_sum = ""
+        for k, v in self.determine_check_sum.items():
             v.sort()
             for char in v:
-                if len(check_sum) < 5:
-                    check_sum += char
+                if len(self.check_sum) < 5:
+                    self.check_sum += char
 
-        if self.checksum == check_sum:
+    def validate_checksum(self):
+        if self.checksum == self.check_sum:
             return int(self.new_line.split("-")[self.number_location])
         else:
             return 0
@@ -83,4 +90,4 @@ def part_2():
         print(Decryptor(line).rotate())
 
 
-part_2()
+part_1()
