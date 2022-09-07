@@ -8,7 +8,7 @@ class Checker:
         self.counted = {}
         self.line = line
         self.checksum = line[-6:-1]
-        self.new_line = self.line[0: len(line) - 7]
+        self.new_line = self.line[0 : len(line) - 7]
         self.number_location = len(self.new_line.split("-")) - 1
 
     def validate(self):
