@@ -1,13 +1,16 @@
+"""
+Other methods found, pandas interval
+    supports overlap and intersect
+"""
+
+
 def data():
     with open("input/2022/day_4", "r") as file:
         return [line.strip("\n").split(",") for line in file.readlines()]
 
 
 def contains(section1, section2):
-    # range_1 = range(section1[0], section1[1])
-    # range_2 = range(section2[0], section2[1])
-    # if range_1 in range_2 or range_2 in range_1:
-    #     return True
+
     if (section1[0] <= section2[0] and section1[1] >= section2[1]) or (
         section1[0] >= section2[0] and section1[1] <= section2[1]
     ):
