@@ -82,5 +82,5 @@ def move(containers, crane):
     print("".join(upper_row))
 
 
-move(container_layout, 9000)
+# move(container_layout, 9000)
 move(container_layout, 9001)
