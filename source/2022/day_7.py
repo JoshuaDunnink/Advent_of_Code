@@ -1,5 +1,4 @@
 import re
-import collections
 
 
 def navigation():
@@ -89,7 +88,7 @@ class Filesystem:
         return directory
 
     def get_dirs(self):
-        dirs = []
+        dirs = [self.index.get("/")]
         for value in self.index.values():
             if type(value) == Directory:
                 dirs.extend(value.get_sub_dirs())
@@ -126,5 +125,26 @@ def part_1(filesystem):
     print(combined_size)
 
 
+def part_2(filesystem):
+    dir_size = []
+    big_enough = []
+    directories = filesystem.get_dirs()
+    for dir in directories:
+        dir_size.append(dir.size)
+
+    freespace = 70000000
+    for dir in directories:
+        if dir.name == "/":
+            freespace -= dir.size
+            break
+
+    for usage in dir_size:
+        if freespace + usage >= 30000000:
+            big_enough.append(usage)
+
+    print(min(big_enough))
+
+
 filesystem = compose_filesystem_from_input()
 part_1(filesystem)
+part_2(filesystem)
