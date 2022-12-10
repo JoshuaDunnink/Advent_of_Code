@@ -3,26 +3,47 @@ def get_instructions():
         return [line.strip("\n").split(" ") for line in file.readlines()]
 
 
+def sprite_is_in_range(cycle, list_of_values):
+    x = sum(list_of_values)
+    location = cycle % 40
+    return location in range(x-1, x+2)
+
+
 list_of_values = [1]
 list_of_strength = []
-cycle_count = 1
+cycle = 1
 instructions = get_instructions()
+image = [["." for _ in range(0, 40)] for _ in range(0, 6)]
 
 for instruction in instructions:
     if instruction[0] == 'noop':
         list_of_values.append(0)
-        cycle_count += 1
-        if cycle_count == 20 or (cycle_count - 20) % 40 == 0:
-            list_of_strength.append(cycle_count * sum(list_of_values))
+        if sprite_is_in_range(cycle, list_of_values):
+            row_n = cycle // 40
+            columns = cycle % 40
+            image[row_n][columns] = "#"
+        cycle += 1
+        if cycle == 20 or (cycle - 20) % 40 == 0:
+            list_of_strength.append(cycle * sum(list_of_values))
     else:
-        for cycle in range(0, 2):
-            if cycle == 0:
-                cycle_count += 1
-                if cycle_count == 20 or (cycle_count - 20) % 40 == 0:
-                    list_of_strength.append(cycle_count * sum(list_of_values))
+        for index in range(0, 2):
+            if index == 0:
+                if sprite_is_in_range(cycle, list_of_values):
+                    row_n = cycle // 40
+                    columns = cycle % 40
+                    image[row_n][columns] = "#"
+                cycle += 1
+                if cycle == 20 or (cycle - 20) % 40 == 0:
+                    list_of_strength.append(cycle * sum(list_of_values))
             else:
                 list_of_values.append(int(instruction[1]))
-                cycle_count += 1
-                if cycle_count == 20 or (cycle_count - 20) % 40 == 0:
-                    list_of_strength.append(cycle_count * sum(list_of_values))
+                if sprite_is_in_range(cycle, list_of_values):
+                    row_n = cycle // 40
+                    columns = cycle % 40
+                    image[row_n][columns] = "#"
+                cycle += 1
+                if cycle == 20 or (cycle - 20) % 40 == 0:
+                    list_of_strength.append(cycle * sum(list_of_values))
+
+[print("".join(line)) for line in image]
 print(sum(list_of_strength))
