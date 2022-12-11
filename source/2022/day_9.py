@@ -3,9 +3,9 @@ def get_moves():
         return [line.strip("\n").split(" ") for line in file]
 
 
-class Rope_Section:
+class RopeSection:
     def __init__(
-        self, name, position: tuple, leader: "Rope_Section" = None
+        self, name, position: tuple, leader: "RopeSection" = None
     ) -> None:
         self.name = name
         self.position = position
@@ -117,8 +117,8 @@ def print_matrix(head, tails):
 
 
 def part_1():
-    head = Rope_Section(name="H", position=(0, 0))
-    tail = Rope_Section(name="T", position=head.position, leader=head)
+    head = RopeSection(name="H", position=(0, 0))
+    tail = RopeSection(name="T", position=head.position, leader=head)
     for move in get_moves():
         for _ in range(0, int(move[1])):
             head.move(direction=move[0])
@@ -127,16 +127,16 @@ def part_1():
 
 
 def part_2():
-    head = Rope_Section(name="H", position=(0, 0))
+    head = RopeSection(name="H", position=(0, 0))
     tails = []
     for num in range(0, 9):
         if num == 0:
             tails.append(
-                Rope_Section(name="1", position=head.position, leader=head)
+                RopeSection(name="1", position=head.position, leader=head)
             )
         else:
             tails.append(
-                Rope_Section(
+                RopeSection(
                     name=str(num + 1),
                     position=head.position,
                     leader=tails[num - 1],
