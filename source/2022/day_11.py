@@ -2,7 +2,10 @@
 lessons learned:
     use splitlines for multiline line
     use list(map(int, input)) or [int(x) for x in y]
+    use modulo of least common multiple to lower number for which the
+    value needs to be divisible for the lcm items
 """
+import math
 
 
 class Monkey:
@@ -17,12 +20,17 @@ class Monkey:
         self.pass_false = pass_false
         self.inspections = 0
 
-    def inspect_items(self):
+    def inspect_items(self, lcm=3):
         return_items = {self.pass_true: [], self.pass_false: []}
         for item in self.items:
             self.inspections += 1
-            old = item
-            value = int(eval(str(item) + self.operation)/3)
+            old = item  # noqa
+            if lcm == 3:
+                value = int(eval(str(item) + self.operation) / lcm)
+            elif item >= lcm:
+                value = int(eval(str(item) + self.operation) % lcm)
+            else:
+                value = int(eval(str(item) + self.operation))
             if value % self.test == 0:
                 return_items[self.pass_true].append(value)
             else:
@@ -50,14 +58,29 @@ def get_monkeys():
     return monkeys
 
 
-pass_items = {}
-monkeys = get_monkeys()
-for round in range(0, 20):
-    print(round)
-    for monkey in monkeys:
-        for monkey, items in monkey.inspect_items().items():
-            monkeys[monkey].items.extend(items)
+def monkey_business(part):
+    monkeys = get_monkeys()
 
-monkey_business = [monkey.inspections for monkey in monkeys]
-monkey_business.sort()
-print(monkey_business[-2] * monkey_business[-1])
+    if part == 1:
+        lcm = 3
+        rounds = 20
+    else:
+        lcm = math.lcm(*[monkey.test for monkey in monkeys])
+        rounds = 10_000
+
+    for _ in range(0, rounds):
+        for monkey in monkeys:
+            for monkey, items in monkey.inspect_items(lcm=lcm).items():
+                monkeys[monkey].items.extend(items)
+
+    monkey_business = [monkey.inspections for monkey in monkeys]
+    monkey_business.sort()
+
+    print(
+        f"Monkey Business value {part=}: "
+        + str(monkey_business[-2] * monkey_business[-1])
+    )
+
+
+monkey_business(1)
+monkey_business(2)
