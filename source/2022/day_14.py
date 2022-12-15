@@ -68,7 +68,7 @@ def drop_particle(sand_map, drop_point, p1=True):
 
     current_location = drop_point
 
-    reached_top =False
+    reached_top = False
     resting = False
     reached_bottom = False
     while not resting or (not p1 and not reached_top):
@@ -132,6 +132,7 @@ def part_2():
 
     # [print("".join(line)) for line in rock_map]
     print("part_2: " + str(sand))
+
 
 part_1()
 part_2()

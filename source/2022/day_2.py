@@ -5,16 +5,16 @@ def data():
 
 def return_score_part1(A, B):
     """
-        Rock A , X
-        Paper B , Y
-        Scissors C , Z
+    Rock A , X
+    Paper B , Y
+    Scissors C , Z
 
-        Win 0
-        Lose 6
+    Win 0
+    Lose 6
 
-        Rock 1
-        Paper 2
-        Scissors 3
+    Rock 1
+    Paper 2
+    Scissors 3
     """
     rock = ["A", "X"]
     paper = ["B", "Y"]
@@ -55,13 +55,13 @@ def return_score_part1(A, B):
 
 def determine_set_part_2(A, B):
     """
-        X = lose
-        Y = draw
-        Z = win
+    X = lose
+    Y = draw
+    Z = win
 
-        rock = ["A", "X"]
-        paper = ["B", "Y"]
-        scissors = ["C", "Z"]
+    rock = ["A", "X"]
+    paper = ["B", "Y"]
+    scissors = ["C", "Z"]
     """
     # Loose
     if B == "X":

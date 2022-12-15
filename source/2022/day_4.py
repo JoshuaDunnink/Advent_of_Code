@@ -19,9 +19,9 @@ def contains(section1, section2):
 
 
 def overlaps(elf_1, elf_2):
-    sections_1 = set(range(elf_1[0], elf_1[1]+1))
-    sections_2 = set(range(elf_2[0], elf_2[1]+1))
-    if (sections_1 & sections_2):
+    sections_1 = set(range(elf_1[0], elf_1[1] + 1))
+    sections_2 = set(range(elf_2[0], elf_2[1] + 1))
+    if sections_1 & sections_2:
         return True
     return False
 
