@@ -6,7 +6,7 @@ def get_instructions():
 def sprite_is_in_range(cycle, list_of_values):
     x = sum(list_of_values)
     location = cycle % 40
-    return location in range(x-1, x+2)
+    return location in range(x - 1, x + 2)
 
 
 list_of_values = [1]
@@ -16,7 +16,7 @@ instructions = get_instructions()
 image = [["." for _ in range(0, 40)] for _ in range(0, 6)]
 
 for instruction in instructions:
-    if instruction[0] == 'noop':
+    if instruction[0] == "noop":
         list_of_values.append(0)
         if sprite_is_in_range(cycle, list_of_values):
             row_n = cycle // 40
