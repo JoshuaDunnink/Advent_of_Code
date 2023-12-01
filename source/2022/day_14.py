@@ -24,7 +24,7 @@ def get_rock_map():
                 min_x = coordinate[x] if coordinate[x] < max_x else min_x
                 min_y = coordinate[y] if coordinate[y] < max_y else min_y
 
-        buffer = 200
+        buffer = 250
         x_min_offset = min_x - buffer
         x_max_offset = max_x + (buffer * 2) - min_x
         for line in rocks:
@@ -116,7 +116,7 @@ def part_1():
         rock_map, reached_bottom = drop_particle(rock_map, drop_point)
         sand += 1
 
-    # [print("".join(line)) for line in rock_map]
+    [print("".join(line)) for line in rock_map]
     print("part_1: " + str(sand - 1))
 
 
@@ -130,9 +130,9 @@ def part_2():
         rock_map, reached_top = drop_particle(rock_map, drop_point, False)
         sand += 1
 
-    # [print("".join(line)) for line in rock_map]
+    [print("".join(line)) for line in rock_map]
     print("part_2: " + str(sand))
 
 
 part_1()
-part_2()
+# part_2()
