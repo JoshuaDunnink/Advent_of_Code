@@ -1,3 +1,6 @@
+from helpers import timing
+
+
 def get_data():
     with open("input/2023/day_4", "r") as file:
         return file.readlines()
@@ -78,6 +81,7 @@ class NumberOfCards:
         return sum_of_cards
 
 
+@timing
 def part_2():
     NumberOfCards(get_data())
 
