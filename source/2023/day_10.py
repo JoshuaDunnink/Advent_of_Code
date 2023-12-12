@@ -1,5 +1,5 @@
 def data():
-    with open("input/2023/day_10_tst", "r") as file:
+    with open("input/2023/day_10", "r") as file:
         file_data = file.readlines()
         lines = []
         for line in file_data:
@@ -61,18 +61,30 @@ def mark_path(grid, previous):
     return grid
 
 
-# def count_included_cels(line: list):
-#     locations = []
-#     if line.count("X") >= 2:
-#         for index, char in enumerate(line):
-#             if char == "X":
-#                 locations.append(index)
+def count_included_cels(i, line: list, marked_path):
+    opened = ""
+    count_line = []
+    for index, char in enumerate(marked_path):
+        waypoint = line[index]
+        if char == "X":
+            if waypoint == "|":
+                count_line += "|"
+            elif waypoint in "FL":
+                opened = waypoint
+            elif opened + waypoint in ["FJ", "L7"]:
+                count_line += "|"
+        else:
+            count_line += "."
 
-#         count = 0
-#         for start, end in zip(locations[::2], locations[1::2]):
-#             count += end - start - 1
-#         return count
-#     return 0
+    surrounded = 0
+    counted_passes = 0
+    for index, char in enumerate(count_line):
+        if char == "|":
+            counted_passes += 1
+        elif counted_passes % 2 == 1:
+            surrounded += 1
+
+    return surrounded
 
 
 def main():
@@ -92,9 +104,15 @@ def main():
         grid = mark_path(grid, previous)
 
     count = 0
-    # for index, line in enumerate(grid):
-    #     print(index)
-    #     count += count_included_cels(line)
+    fresh_grid = data()
+    start = get_starting_location(fresh_grid)
+    fresh_grid[start[y]][start[x]] = "-"
+    for index, line in enumerate(grid):
+        count += count_included_cels(
+            index,
+            fresh_grid[index],
+            line,
+        )
 
     print("part 1: " + str(int(steps / 2)))
     print("part 2: " + str(count))

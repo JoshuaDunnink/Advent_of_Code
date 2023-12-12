@@ -63,7 +63,8 @@ def replace_jokers(cards):
         cards[card] += jokers
     elif count_max > 1:
         multiple = {
-            POINTS.get(item): item for item in reversed_cards.get(max_occurances)
+            POINTS.get(item): item
+            for item in reversed_cards.get(max_occurances)
         }
         cards[multiple[max(multiple.keys())]] += jokers
     return {key: val for key, val in cards.items() if val}
@@ -133,7 +134,9 @@ def determine_rank(input):
         rank_list[rank].append(hand)
     # for rank in range(7,0, -1):
     for rank in range(1, 8, 1):
-        sorted_scores += sorted(rank_list.get(rank), key=cmp_to_key(sorting_logic))
+        sorted_scores += sorted(
+            rank_list.get(rank), key=cmp_to_key(sorting_logic)
+        )
     return sorted_scores, hands
 
 
