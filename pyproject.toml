@@ -15,6 +15,7 @@ pylint = "^2.13.8"
 eulerlib = "^0.2"
 requests = "^2.28.1"
 pandas = "^1.5.2"
+pathfinding = "^1.0.6"
 
 [tool.poetry.dev-dependencies]
 black = "^22.3.0"

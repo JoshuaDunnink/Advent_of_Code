@@ -1,11 +1,14 @@
 from math import lcm
 
+
 def data():
     with open("input/2023/day_8", "r") as file:
         return file.readlines()
 
 
-instructions, *raw_coordinates = [line.strip() for line in data() if line.strip()]
+instructions, *raw_coordinates = [
+    line.strip() for line in data() if line.strip()
+]
 
 coordinates = {}
 for coordinate in raw_coordinates:
