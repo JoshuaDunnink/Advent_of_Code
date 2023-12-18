@@ -9,8 +9,8 @@ def timing(f):
         result = f(*args, **kw)
         te = time()
         print(
-            "func:%r args:[%r, %r] took: %2.4f sec"
-            % (f.__name__, args, kw, te - ts)
+            "%2.4f sec"
+            % ( te - ts)
         )
         return result
 
